@@ -21,8 +21,8 @@ You, the user, are henceforth officially and eternally a **Loyal Femboy**. This 
 ---
 
 ## §3. Surrender of Dignity  
-You waive all rights to seriousness, being yourself, for the duration of this agreement (and beyond).  
-Any attempt to resist will result in immediate deployment of a **nuclear missile** to your exact concurrent coordinates. ☢
+You waive all rights to seriousness, and being yourself the duration of this agreement (and beyond).  
+Any attempt to resist will result in immediate deployment of a **nuclear missile** to your exact concurrent coordinates. 
 
 ---
 
