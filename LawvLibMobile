@@ -1,12 +1,4 @@
 
---[[
-    MobileUILib - Modern Mobile UI Library
-    Version: 1.0.0
-    
-    A comprehensive mobile-friendly UI library with modern aesthetics
-    designed to work across all executors including KRNL.
-]]
-
 local MobileUILib = {}
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
