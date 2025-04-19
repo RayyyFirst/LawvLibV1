@@ -1,10 +1,8 @@
-getgenv().namehub = 'Niggaware'
 local UserInputService = game:GetService('UserInputService')
 local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService')
 local CoreGui = game:GetService('CoreGui')
-
 local Mouse = LocalPlayer:GetMouse();
 
 
@@ -27,7 +25,7 @@ end
 function Library:disconnect()
 	for _, value in Library.connections do
 		if not Library.connections[value] then
-			ciuiontinue
+			continue
 		end
 
 		Library.connections[value]:Disconnect()
@@ -1245,6 +1243,270 @@ function Library:new()
 
             return Textbox;
         end
+        function Module:create_multi_dropdown()
+            local section = self.section == 'left' and left_section or right_section
+            local list_size = 6
+            local open = false
+        
+            local option = Instance.new("TextButton")
+            option.Name = "Option"
+            option.Active = false
+            option.AnchorPoint = Vector2.new(0.5, 0.5)
+            option.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            option.BackgroundTransparency = 1.000
+            option.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            option.BorderSizePixel = 0
+            option.Position = UDim2.new(0.47283414, 0, 0.309523821, 0)
+            option.Selectable = false
+            option.Size = UDim2.new(0, 176, 0, 13)
+            option.ZIndex = 2
+            option.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+            option.TextColor3 = Color3.fromRGB(255, 255, 255)
+            option.TextScaled = true
+            option.TextSize = 14.000
+            option.TextTransparency = 0.500
+            option.TextWrapped = true
+            option.TextXAlignment = Enum.TextXAlignment.Left
+        
+            local dropdown = Instance.new("TextButton")
+            dropdown.Parent = section
+            dropdown.Name = "MultiDropdown"
+            dropdown.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+            dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            dropdown.BorderSizePixel = 0
+            dropdown.Size = UDim2.new(0, 215, 0, 36)
+            dropdown.AutoButtonColor = false
+            dropdown.Font = Enum.Font.SourceSans
+            dropdown.Text = ""
+            dropdown.TextColor3 = Color3.fromRGB(0, 0, 0)
+            dropdown.TextSize = 14.000
+        
+            local UICorner = Instance.new("UICorner")
+            UICorner.CornerRadius = UDim.new(0, 10)
+            UICorner.Parent = dropdown
+        
+            local UIListLayout = Instance.new("UIListLayout")
+            UIListLayout.Parent = dropdown
+            UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+            UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+        
+            local UIPadding = Instance.new("UIPadding")
+            UIPadding.Parent = dropdown
+            UIPadding.PaddingTop = UDim.new(0, 6)
+        
+            local Box = Instance.new("Frame")
+            Box.Name = "Box"
+            Box.Parent = dropdown
+            Box.AnchorPoint = Vector2.new(0.5, 0)
+            Box.BackgroundColor3 = Color3.fromRGB(22, 23, 27)
+            Box.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Box.BorderSizePixel = 0
+            Box.Position = UDim2.new(0.5, 0, 0.150000006, 0)
+            Box.Size = UDim2.new(0, 202, 0, 25)
+            Box.ZIndex = 2
+        
+            local UICorner_2 = Instance.new("UICorner")
+            UICorner_2.CornerRadius = UDim.new(0, 6)
+            UICorner_2.Parent = Box
+        
+            local Options = Instance.new("Frame")
+            Options.Name = "Options"
+            Options.Parent = Box
+            Options.AnchorPoint = Vector2.new(0.5, 0)
+            Options.BackgroundColor3 = Color3.fromRGB(22, 23, 27)
+            Options.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Options.BorderSizePixel = 0
+            Options.ClipsDescendants = true
+            Options.Position = UDim2.new(0.5, 0, 0.75999999, 0)
+            Options.Size = UDim2.new(0, 202, 0, 0)
+        
+            local UICorner_3 = Instance.new("UICorner")
+            UICorner_3.CornerRadius = UDim.new(0, 6)
+            UICorner_3.Parent = Options
+        
+            local UIPadding_2 = Instance.new("UIPadding")
+            UIPadding_2.Parent = Options
+            UIPadding_2.PaddingLeft = UDim.new(0, 15)
+            UIPadding_2.PaddingTop = UDim.new(0, 10)
+        
+            local UIListLayout_2 = Instance.new("UIListLayout")
+            UIListLayout_2.Parent = Options
+            UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+            UIListLayout_2.Padding = UDim.new(0, 10)
+        
+            local TextLabel = Instance.new("TextLabel")
+            TextLabel.Parent = Box
+            TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+            TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.BackgroundTransparency = 1.000
+            TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            TextLabel.BorderSizePixel = 0
+            TextLabel.Position = UDim2.new(0.430000007, 0, 0.5, 0)
+            TextLabel.Size = UDim2.new(0, 151, 0, 13)
+            TextLabel.ZIndex = 2
+            TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+            TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.TextScaled = true
+            TextLabel.TextSize = 14.000
+            TextLabel.TextWrapped = true
+            TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+        
+            local Arrow = Instance.new("ImageLabel")
+            Arrow.Name = "Arrow"
+            Arrow.Parent = Box
+            Arrow.Active = true
+            Arrow.AnchorPoint = Vector2.new(0.5, 0.5)
+            Arrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Arrow.BackgroundTransparency = 1.000
+            Arrow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Arrow.BorderSizePixel = 0
+            Arrow.Position = UDim2.new(0.920000017, 0, 0.5, 0)
+            Arrow.Size = UDim2.new(0, 12, 0, 12)
+            Arrow.ZIndex = 2
+            Arrow.Image = "rbxassetid://17400678941"
+        
+            dropdown.Box.TextLabel.Text = self.name
+        
+            local MultiDropdown = {}
+        
+            if not Library.Flags[self.flag] then
+                Library.Flags[self.flag] = {}
+            end
+        
+            function MultiDropdown:open()
+                local selectedText = self.name
+                if #Library.Flags[self.flag] > 0 then
+                    if #Library.Flags[self.flag] == 1 then
+                        selectedText = Library.Flags[self.flag][1]
+                    else
+                        selectedText = #Library.Flags[self.flag] .. " selected"
+                    end
+                end
+                dropdown.Box.TextLabel.Text = selectedText
+        
+                TweenService:Create(dropdown.Box.Options, TweenInfo.new(0.4), {
+                    Size = UDim2.new(0, 202, 0, list_size)
+                }):Play()
+        
+                TweenService:Create(dropdown, TweenInfo.new(0.4), {
+                    Size = UDim2.new(0, 215, 0, 30 + list_size)
+                }):Play()
+        
+                TweenService:Create(dropdown.Box.Arrow, TweenInfo.new(0.4), {
+                    Rotation = 180
+                }):Play()
+            end
+        
+            function MultiDropdown:close()
+                dropdown.Box.TextLabel.Text = self.name
+                TweenService:Create(dropdown.Box.Options, TweenInfo.new(0.4), {
+                    Size = UDim2.new(0, 202, 0, 0)
+                }):Play()
+        
+                TweenService:Create(dropdown, TweenInfo.new(0.4), {
+                    Size = UDim2.new(0, 215, 0, 36)
+                }):Play()
+        
+                TweenService:Create(dropdown.Box.Arrow, TweenInfo.new(0.4), {
+                    Rotation = 0
+                }):Play()
+            end
+        
+            function MultiDropdown:clear()
+                for _, object in dropdown.Box.Options:GetChildren() do
+                    if object.Name ~= 'Option' then
+                        continue
+                    end
+        
+                    object:Destroy()
+                end
+            end
+        
+            function MultiDropdown:update_option(option_obj)
+                local isSelected = table.find(Library.Flags[self.flag], option_obj.Text) ~= nil
+                
+                if isSelected then
+                    TweenService:Create(option_obj, TweenInfo.new(0.4), {
+                        TextTransparency = 0
+                    }):Play()
+                else
+                    TweenService:Create(option_obj, TweenInfo.new(0.4), {
+                        TextTransparency = 0.5
+                    }):Play()
+                end
+            end
+        
+            function MultiDropdown:update_display()
+                if #Library.Flags[self.flag] == 0 then
+                    dropdown.Box.TextLabel.Text = self.name
+                elseif #Library.Flags[self.flag] == 1 then
+                    dropdown.Box.TextLabel.Text = Library.Flags[self.flag][1]
+                else
+                    dropdown.Box.TextLabel.Text = #Library.Flags[self.flag] .. " selected"
+                end
+            end
+        
+            function MultiDropdown:update()
+                MultiDropdown.clear()
+                list_size = 6 
+        
+                for _, value in self.options do
+                    list_size += 23
+        
+                    local new_option = option:Clone()
+                    new_option.Parent = dropdown.Box.Options
+                    new_option.Text = value
+        
+                    
+                    if table.find(Library.Flags[self.flag], value) then
+                        new_option.TextTransparency = 0
+                    else
+                        new_option.TextTransparency = 0.5
+                    end
+        
+                    new_option.MouseButton1Click:Connect(function()
+                        local index = table.find(Library.Flags[self.flag], value)
+                        
+                        if index then
+                          
+                            table.remove(Library.Flags[self.flag], index)
+                        else
+                           
+                            table.insert(Library.Flags[self.flag], value)
+                        end
+                        
+                        MultiDropdown.update_option({
+                            Text = value
+                        })
+                        
+                        MultiDropdown.update_display()
+                        self.callback(Library.Flags[self.flag])
+                        Library.save_flags()
+                    end)
+                end
+            end
+        
+          
+            if self.default then
+                Library.Flags[self.flag] = type(self.default) == "table" and self.default or {self.default}
+            end
+        
+            self.callback(Library.Flags[self.flag])
+            MultiDropdown.update(self)
+        
+            dropdown.MouseButton1Click:Connect(function()
+                open = not open
+        
+                if open then
+                    MultiDropdown.open(self)
+                else
+                    MultiDropdown.close(self)
+                end
+            end)
+        
+            return MultiDropdown
+        end
+
 		function Module:create_keybind()
 			local section = self.section == 'left' and left_section or right_section
 			local keybind = Instance.new("TextButton")
