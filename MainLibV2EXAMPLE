@@ -1,4 +1,4 @@
-getgenv().namehub = "LawvLibV2"
+getgenv().namehub = "LawvLibV1"
 local UserInputService = game:GetService('UserInputService')
 local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
@@ -1496,6 +1496,543 @@ function Library:new()
             return MultiDropdown
         end
 
+		function Module:create_config_system()
+			local section = self.section == 'left' and left_section or right_section
+			
+			
+			local configFrame = Instance.new("Frame")
+			configFrame.Name = "ConfigSystem"
+			configFrame.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+			configFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			configFrame.BorderSizePixel = 0
+			configFrame.Size = UDim2.new(0, 215, 0, 120)
+			configFrame.Parent = section
+			
+			local UICorner = Instance.new("UICorner")
+			UICorner.CornerRadius = UDim.new(0, 10)
+			UICorner.Parent = configFrame
+			
+			
+			local titleLabel = Instance.new("TextLabel")
+			titleLabel.Name = "TitleLabel"
+			titleLabel.AnchorPoint = Vector2.new(0.5, 0)
+			titleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			titleLabel.BackgroundTransparency = 1.000
+			titleLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			titleLabel.BorderSizePixel = 0
+			titleLabel.Position = UDim2.new(0.5, 0, 0.05, 0)
+			titleLabel.Size = UDim2.new(0, 200, 0, 20)
+			titleLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+			titleLabel.Text = "Configuration"
+			titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			titleLabel.TextSize = 14.000
+			titleLabel.Parent = configFrame
+			
+			
+			local configNameBox = Instance.new("TextBox")
+			configNameBox.Name = "ConfigNameBox"
+			configNameBox.AnchorPoint = Vector2.new(0.5, 0)
+			configNameBox.BackgroundColor3 = Color3.fromRGB(22, 23, 27)
+			configNameBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			configNameBox.BorderSizePixel = 0
+			configNameBox.Position = UDim2.new(0.5, 0, 0.25, 0)
+			configNameBox.Size = UDim2.new(0, 180, 0, 25)
+			configNameBox.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular)
+			configNameBox.PlaceholderText = "Config name..."
+			configNameBox.Text = ""
+			configNameBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			configNameBox.TextSize = 14.000
+			configNameBox.Parent = configFrame
+			
+			local nameBoxCorner = Instance.new("UICorner")
+			nameBoxCorner.CornerRadius = UDim.new(0, 6)
+			nameBoxCorner.Parent = configNameBox
+			
+			
+			local buttonsContainer = Instance.new("Frame")
+			buttonsContainer.Name = "ButtonsContainer"
+			buttonsContainer.AnchorPoint = Vector2.new(0.5, 0)
+			buttonsContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			buttonsContainer.BackgroundTransparency = 1.000
+			buttonsContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			buttonsContainer.BorderSizePixel = 0
+			buttonsContainer.Position = UDim2.new(0.5, 0, 0.5, 0)
+			buttonsContainer.Size = UDim2.new(0, 200, 0, 30)
+			buttonsContainer.Parent = configFrame
+			
+			local buttonsLayout = Instance.new("UIListLayout")
+			buttonsLayout.FillDirection = Enum.FillDirection.Horizontal
+			buttonsLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+			buttonsLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			buttonsLayout.Padding = UDim.new(0, 10)
+			buttonsLayout.Parent = buttonsContainer
+			
+			
+			local saveButton = Instance.new("TextButton")
+			saveButton.Name = "SaveButton"
+			saveButton.BackgroundColor3 = Color3.fromRGB(66, 89, 182)
+			saveButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			saveButton.BorderSizePixel = 0
+			saveButton.Size = UDim2.new(0, 85, 0, 25)
+			saveButton.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+			saveButton.Text = "Save"
+			saveButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			saveButton.TextSize = 14.000
+			saveButton.Parent = buttonsContainer
+			
+			local saveButtonCorner = Instance.new("UICorner")
+			saveButtonCorner.CornerRadius = UDim.new(0, 6)
+			saveButtonCorner.Parent = saveButton
+			
+		
+			local loadButton = Instance.new("TextButton")
+			loadButton.Name = "LoadButton"
+			loadButton.BackgroundColor3 = Color3.fromRGB(66, 89, 182)
+			loadButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			loadButton.BorderSizePixel = 0
+			loadButton.Size = UDim2.new(0, 85, 0, 25)
+			loadButton.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+			loadButton.Text = "Load"
+			loadButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			loadButton.TextSize = 14.000
+			loadButton.Parent = buttonsContainer
+			
+			local loadButtonCorner = Instance.new("UICorner")
+			loadButtonCorner.CornerRadius = UDim.new(0, 6)
+			loadButtonCorner.Parent = loadButton
+			
+		
+			local configDropdown = Instance.new("TextButton")
+			configDropdown.Name = "ConfigDropdown"
+			configDropdown.AnchorPoint = Vector2.new(0.5, 0)
+			configDropdown.BackgroundColor3 = Color3.fromRGB(22, 23, 27)
+			configDropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			configDropdown.BorderSizePixel = 0
+			configDropdown.Position = UDim2.new(0.5, 0, 0.75, 0)
+			configDropdown.Size = UDim2.new(0, 180, 0, 25)
+			configDropdown.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular)
+			configDropdown.Text = "Select config..."
+			configDropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
+			configDropdown.TextSize = 14.000
+			configDropdown.Parent = configFrame
+			
+			local dropdownCorner = Instance.new("UICorner")
+			dropdownCorner.CornerRadius = UDim.new(0, 6)
+			dropdownCorner.Parent = configDropdown
+			
+			
+			local ConfigSystem = {}
+			
+			
+			function ConfigSystem:SaveConfig(configName)
+				if not configName or configName == "" then
+					configName = "default"
+				end
+				
+				
+				if not isfolder("ConfigurationLawvLib") then
+					makefolder("ConfigurationLawvLib")
+				end
+				
+			
+				local configData = HttpService:JSONEncode(Library.Flags)
+				writefile(`ConfigurationLawvLib/{configName}.json`, configData)
+				
+				
+				self:UpdateConfigList()
+				
+				return true
+			end
+			
+			
+			function ConfigSystem:LoadConfig(configName)
+				if not configName or configName == "" then
+					configName = "default"
+				end
+				
+				local configPath = `ConfigurationLawvLib/{configName}.json`
+				
+			
+				if not isfile(configPath) then
+					return false
+				end
+				
+				local success, configData = pcall(function()
+					return HttpService:JSONDecode(readfile(configPath))
+				end)
+				
+				if not success or not configData then
+					return false
+				end
+				
+			
+				for flag, value in pairs(configData) do
+					Library.Flags[flag] = value
+				end
+				
+				
+				self:RefreshUI()
+				
+				return true
+			end
+			
+			
+			function ConfigSystem:GetConfigList()
+				if not isfolder("ConfigurationLawvLib") then
+					makefolder("ConfigurationLawvLib")
+					return {}
+				end
+				
+				local configs = {}
+				local files = listfiles("ConfigurationLawvLib")
+				
+				for _, file in ipairs(files) do
+					
+					local fileName = string.match(file, "[^\\^/]+$")
+					fileName = string.match(fileName, "(.+)%.json$")
+					
+					if fileName then
+						table.insert(configs, fileName)
+					end
+				end
+				
+				return configs
+			end
+			
+			
+			function ConfigSystem:UpdateConfigList()
+				local configs = self:GetConfigList()
+				
+				
+				local dropdownMenu = Instance.new("Frame")
+				dropdownMenu.Name = "DropdownMenu"
+				dropdownMenu.BackgroundColor3 = Color3.fromRGB(22, 23, 27)
+				dropdownMenu.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				dropdownMenu.BorderSizePixel = 0
+				dropdownMenu.Position = UDim2.new(0, 0, 1, 5)
+				dropdownMenu.Size = UDim2.new(1, 0, 0, #configs * 25)
+				dropdownMenu.Visible = false
+				dropdownMenu.ZIndex = 10
+				dropdownMenu.Parent = configDropdown
+				
+				local menuCorner = Instance.new("UICorner")
+				menuCorner.CornerRadius = UDim.new(0, 6)
+				menuCorner.Parent = dropdownMenu
+				
+				local menuLayout = Instance.new("UIListLayout")
+				menuLayout.SortOrder = Enum.SortOrder.LayoutOrder
+				menuLayout.Parent = dropdownMenu
+				
+				
+				for _, child in pairs(dropdownMenu:GetChildren()) do
+					if child:IsA("TextButton") then
+						child:Destroy()
+					end
+				end
+				
+			
+				for i, config in ipairs(configs) do
+					local configItem = Instance.new("TextButton")
+					configItem.Name = config
+					configItem.BackgroundColor3 = Color3.fromRGB(22, 23, 27)
+					configItem.BackgroundTransparency = 0
+					configItem.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					configItem.BorderSizePixel = 0
+					configItem.Size = UDim2.new(1, 0, 0, 25)
+					configItem.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular)
+					configItem.Text = config
+					configItem.TextColor3 = Color3.fromRGB(255, 255, 255)
+					configItem.TextSize = 14.000
+					configItem.ZIndex = 11
+					configItem.Parent = dropdownMenu
+					
+					
+					configItem.MouseButton1Click:Connect(function()
+						configDropdown.Text = config
+						dropdownMenu.Visible = false
+						configNameBox.Text = config
+					end)
+				end
+				
+				
+				local dropdownOpen = false
+				configDropdown.MouseButton1Click:Connect(function()
+					dropdownOpen = not dropdownOpen
+					dropdownMenu.Visible = dropdownOpen
+				end)
+			end
+			
+			
+			function ConfigSystem:RefreshUI()
+				
+				for _, object in pairs(section.Parent:GetDescendants()) do
+					if object.Name == "Toggle" and object:IsA("TextButton") then
+						local flag = object:GetAttribute("Flag")
+						if flag and Library.Flags[flag] ~= nil then
+							
+							if object.Checkbox and object.Checkbox:FindFirstChild("Fill") then
+								if Library.Flags[flag] then
+									TweenService:Create(object.Checkbox.Fill, TweenInfo.new(0.4), {
+										BackgroundTransparency = 0
+									}):Play()
+									
+									TweenService:Create(object.Checkbox.Glow, TweenInfo.new(0.4), {
+										ImageTransparency = 0
+									}):Play()
+								else
+									TweenService:Create(object.Checkbox.Fill, TweenInfo.new(0.4), {
+										BackgroundTransparency = 1
+									}):Play()
+									
+									TweenService:Create(object.Checkbox.Glow, TweenInfo.new(0.4), {
+										ImageTransparency = 1
+									}):Play()
+								end
+							end
+						end
+					end
+					
+				
+					if object.Name == "Slider" and object:IsA("TextButton") then
+						local flag = object:GetAttribute("Flag")
+						if flag and Library.Flags[flag] ~= nil then
+							local value = Library.Flags[flag]
+							local min = object:GetAttribute("MinValue") or 0
+							local max = object:GetAttribute("MaxValue") or 100
+							
+							if object:FindFirstChild("Number") then
+								object.Number.Text = value
+							end
+							
+							if object:FindFirstChild("Box") and object.Box:FindFirstChild("Fill") then
+								local result = (value - min) / (max - min)
+								                        
+														local slider_size = math.clamp(result, 0.001, 0.999)
+                        
+														object.Box.Fill.UIGradient.Transparency = NumberSequence.new({
+															NumberSequenceKeypoint.new(0, 0),
+															NumberSequenceKeypoint.new(slider_size, 0),
+															NumberSequenceKeypoint.new(math.min(slider_size + 0.001, 1), 1),
+															NumberSequenceKeypoint.new(1, 1)
+														})
+														
+														object.Box.Glow.UIGradient.Transparency = NumberSequence.new({
+															NumberSequenceKeypoint.new(0, 0),
+															NumberSequenceKeypoint.new(slider_size, 0),
+															NumberSequenceKeypoint.new(math.min(slider_size + 0.03, 1), 1),
+															NumberSequenceKeypoint.new(1, 1)
+														})
+													end
+												end
+											end
+											
+											
+											if object.Name == "Dropdown" and object:IsA("TextButton") then
+												local flag = object:GetAttribute("Flag")
+												if flag and Library.Flags[flag] ~= nil then
+													if object:FindFirstChild("Box") and object.Box:FindFirstChild("TextLabel") then
+														object.Box.TextLabel.Text = Library.Flags[flag]
+													end
+												end
+											end
+											
+											
+											if object.Name == "MultiDropdown" and object:IsA("TextButton") then
+												local flag = object:GetAttribute("Flag")
+												if flag and Library.Flags[flag] ~= nil then
+													if object:FindFirstChild("Box") and object.Box:FindFirstChild("TextLabel") then
+														local selected = Library.Flags[flag]
+														if #selected == 0 then
+															object.Box.TextLabel.Text = object:GetAttribute("Name") or "Select..."
+														elseif #selected == 1 then
+															object.Box.TextLabel.Text = selected[1]
+														else
+															object.Box.TextLabel.Text = #selected .. " selected"
+														end
+														
+														
+														if object.Box:FindFirstChild("Options") then
+															for _, option in pairs(object.Box.Options:GetChildren()) do
+																if option:IsA("TextButton") then
+																	if table.find(selected, option.Text) then
+																		option.TextTransparency = 0
+																	else
+																		option.TextTransparency = 0.5
+																	end
+																end
+															end
+														end
+													end
+												end
+											end
+											
+											
+											if object.Name == "TextBox" and object:IsA("TextButton") then
+												local flag = object:GetAttribute("Flag")
+												if flag and Library.Flags[flag] ~= nil then
+													if object:FindFirstChild("Box") and object.Box:FindFirstChild("TextHolder") then
+														object.Box.TextHolder.Text = Library.Flags[flag]
+													end
+												end
+											end
+											
+										
+											if object.Name == "Keybind" and object:IsA("TextButton") then
+												local flag = object:GetAttribute("Flag")
+												if flag and Library.Flags[flag] ~= nil then
+													if object:FindFirstChild("Box") and object.Box:FindFirstChild("TextLabel") then
+														object.Box.TextLabel.Text = Library.Flags[flag]
+													end
+												end
+											end
+										end
+									end
+									
+									
+									function ConfigSystem:AutoLoadConfig()
+										local defaultConfig = "default"
+										
+										
+										if isfile(`ConfigurationLawvLib/{defaultConfig}.json`) then
+											self:LoadConfig(defaultConfig)
+											return true
+										end
+										
+										return false
+									end
+									
+								
+									saveButton.MouseButton1Click:Connect(function()
+										local configName = configNameBox.Text
+										if configName and configName ~= "" then
+											ConfigSystem:SaveConfig(configName)
+											configDropdown.Text = configName
+										else
+											ConfigSystem:SaveConfig("default")
+											configDropdown.Text = "default"
+										end
+									end)
+									
+									loadButton.MouseButton1Click:Connect(function()
+										local configName = configNameBox.Text
+										if configName and configName ~= "" then
+											ConfigSystem:LoadConfig(configName)
+										elseif configDropdown.Text ~= "Select config..." then
+											ConfigSystem:LoadConfig(configDropdown.Text)
+										end
+									end)
+									
+									
+									ConfigSystem:UpdateConfigList()
+									
+									
+									task.spawn(function()
+										ConfigSystem:AutoLoadConfig()
+									end)
+									
+									return ConfigSystem
+								end
+								
+								
+								local original_library_new = Library.new
+								Library.new = function(...)
+									local main = original_library_new(...)
+									
+									
+									local original_create_toggle = main.create_tab
+									main.create_tab = function(name)
+										local tab = original_create_toggle(name)
+										
+										
+										local original_toggle = tab.create_toggle
+										tab.create_toggle = function(self)
+											local toggle = original_toggle(self)
+											toggle:SetAttribute("Flag", self.flag)
+											return toggle
+										end
+										
+									
+										local original_slider = tab.create_slider
+										tab.create_slider = function(self)
+											local slider = original_slider(self)
+											slider:SetAttribute("Flag", self.flag)
+											slider:SetAttribute("MinValue", self.minimum_value)
+											slider:SetAttribute("MaxValue", self.maximum_value)
+											return slider
+										end
+										
+										
+										local original_dropdown = tab.create_dropdown
+										tab.create_dropdown = function(self)
+											local dropdown = original_dropdown(self)
+											dropdown:SetAttribute("Flag", self.flag)
+											dropdown:SetAttribute("Name", self.name)
+											return dropdown
+										end
+										
+										
+										local original_multi_dropdown = tab.create_multi_dropdown
+										tab.create_multi_dropdown = function(self)
+											local multi_dropdown = original_multi_dropdown(self)
+											multi_dropdown:SetAttribute("Flag", self.flag)
+											multi_dropdown:SetAttribute("Name", self.name)
+											return multi_dropdown
+										end
+										
+										
+										local original_textbox = tab.create_textbox
+										tab.create_textbox = function(self)
+											local textbox = original_textbox(self)
+											textbox:SetAttribute("Flag", self.flag)
+											return textbox
+										end
+										
+									
+										local original_keybind = tab.create_keybind
+										tab.create_keybind = function(self)
+											local keybind = original_keybind(self)
+											keybind:SetAttribute("Flag", self.flag)
+											return keybind
+										end
+										
+										return tab
+									end
+									
+							
+									main.create_config_system = function(section)
+										local configTab = main.create_tab("Config")
+										
+										configTab.create_title({
+											name = "Configuration",
+											section = section or "left"
+										})
+										
+										return configTab.create_config_system({
+											section = section or "left"
+										})
+									end
+									
+									return main
+								end
+								
+								
+								Library.save_flags = function()
+									
+									if Library.current_config then
+										if not isfolder("ConfigurationLawvLib") then
+											makefolder("ConfigurationLawvLib")
+										end
+										
+										local configData = HttpService:JSONEncode(Library.Flags)
+										writefile(`ConfigurationLawvLib/{Library.current_config}.json`, configData)
+									end
+								end
+								
+
+								Library.set_current_config = function(configName)
+									Library.current_config = configName
+								end
+
 		function Module:create_keybind()
 			local section = self.section == 'left' and left_section or right_section
 			local keybind = Instance.new("TextButton")
@@ -1738,6 +2275,7 @@ tab.create_dropdown({
 		print(value)
 	end
 })
+
 tab.create_title({
 	name = 'Auto Rewards',
 	section = 'right'
@@ -1766,7 +2304,7 @@ tab.create_dropdown({
 	end
 })
 tab.create_title({
-	name = 'DropdownTesting',
+	name = 'Multidropdowntest',
 	section = 'left'
 })
 tab.create_multi_dropdown({
@@ -1782,6 +2320,42 @@ tab.create_multi_dropdown({
         for _, option in pairs(selected_options) do
             print("Selected: " .. option)
         end
+    end
+})
+local configTab = main.create_tab('Config')
+
+configTab.create_title({
+    name = 'Configuration',
+    section = 'left'
+})
+
+
+local configSystem = configTab.create_config_system({
+    section = 'left'
+})
+
+Library.set_current_config("default")
+
+
+configTab.create_toggle({
+    name = 'Auto Save Config',
+    flag = 'auto_save_config',
+    section = 'right',
+    enabled = true,
+    callback = function(state)
+        
+        Library.auto_save = state
+    end
+})
+
+configTab.create_button({
+    name = 'Reset All Settings',
+    section = 'right',
+    callback = function()
+
+        Library.Flags = {}
+        configSystem:RefreshUI()
+        Library.save_flags()
     end
 })
 return library
